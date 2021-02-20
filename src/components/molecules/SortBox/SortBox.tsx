@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from 'bumbag'
+import { Flex, Text } from 'bumbag'
 import React from 'react'
 import RadioButton from '../../atoms/RadioButton/RadioButton'
 

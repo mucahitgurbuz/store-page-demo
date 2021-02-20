@@ -25,6 +25,7 @@ const theme: ThemeConfig = {
   fonts: {
     default: 'Open Sans, sans-serif',
     price: 'Helvetica, sans-serif',
+    input: 'Inter, sans-serif',
   },
   fontWeights: {
     Thin: 100,
@@ -89,6 +90,7 @@ const theme: ThemeConfig = {
     sm: 1.28,
     l: 1.38,
     xl: 1.42,
+    xxl: 1.72,
   },
   altitudes: {
     100: 'box-shadow: 0px 1px 7px rgba(93, 56, 192, 0.4)',
@@ -110,6 +112,26 @@ const theme: ThemeConfig = {
     '8xl' /* 48 */: space(12, 'minor'),
     xxl /* 96 */: space(24, 'minor'),
   },
+  Input: {
+    styles: {
+      base: {
+        border: "2px solid #E0E0E0",
+        borderRadius: "2px",
+        paddingLeft: '16px',
+        paddingRight: '16px',
+        fontFamily: 'Inter, sans-serif',
+        height: '48px',
+        color: '#A8A8A8',
+        lineHeight: 1.72,
+        ":focus": {border: "2px solid #E0E0E0", boxShadow: 'none !important'}
+      },
+      placeholder: {
+        fontFamily: 'Inter, sans-serif',
+        color: '#A8A8A8',
+        lineHeight: 1.72
+      }
+    }
+  }
 }
 
 export default theme

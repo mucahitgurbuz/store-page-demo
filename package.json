@@ -23,6 +23,7 @@
     "dayjs": "^1.8.34",
     "i18next": "^19.6.3",
     "react": "^16.13.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.8.6",
     "react-hooks-compose": "^2.0.7",
     "react-i18next": "^11.7.0",
