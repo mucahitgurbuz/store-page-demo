@@ -24,6 +24,7 @@ const theme: ThemeConfig = {
 
   fonts: {
     default: 'Open Sans, sans-serif',
+    price: 'Helvetica, sans-serif',
   },
   fontWeights: {
     Thin: 100,
@@ -31,6 +32,7 @@ const theme: ThemeConfig = {
     Light: 300,
     Regular: 400,
     Medium: 500,
+    bold: 600,
     normal: 700,
     ExtraBlack: 900,
   },
@@ -42,7 +44,9 @@ const theme: ThemeConfig = {
 
     white: '#ffffff',
     white100: '#FEFEFE',
+
     ghostWhite: '#F2F0FD',
+    ghostWhite100: '#d9d8e3',
 
     black100: 'E0E0E0',
     black300: '#A8A8A8',
@@ -51,7 +55,8 @@ const theme: ThemeConfig = {
     black600: '#525252',
     black700: '#191919',
 
-    grey100: '#F3F0FE',
+    grey100: '#F4F4F4',
+    grey200: '#F3F0FE',
     grey300: '#E5E5E5',
   },
   borderRadii: {
@@ -67,13 +72,22 @@ const theme: ThemeConfig = {
       color: '#F3F0FE',
       width: '1px',
     },
+    thick: {
+      color: '#1EA4CE',
+      width: '2px',
+    },
     grey: {
       color: '#E0E0E0',
       width: '1px',
     },
   },
+  lineHeights: {
+    sm: 1.28,
+    l: 1.42,
+  },
   altitudes: {
     100: 'box-shadow: 0px 1px 7px rgba(93, 56, 192, 0.4)',
+    200: 'box-shadow: 0px 4px 24px rgba(93, 62, 188, 0.04)'
   },
   spacing: {
     xs /* 4 */: space(1, 'minor'),
