@@ -13,10 +13,10 @@ const ProductItem: React.FC = () => {
           src="https://www.apple.com/v/product-red/o/images/meta/og__dbjwy50zuc02.png?202012220707"
         />
       </Flex>
-      <Text fontFamily="price" lineHeight="l" marginTop="8px" color="primary">
+      <Text fontFamily="price" lineHeight="xl" marginTop="8px" color="primary">
         ₺ 14,99
       </Text>
-      <Text fontWeight="bold" lineHeight="l" color="black700">
+      <Text fontWeight="bold" lineHeight="xl" color="black700">
         Gorgeous Office Mug
       </Text>
       <Button styleProps={{ width: '100%', height: '22px', marginTop: '8px', fontSize: '12px' }}>Add</Button>

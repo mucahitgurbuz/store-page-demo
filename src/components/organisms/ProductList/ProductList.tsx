@@ -1,4 +1,4 @@
-import { Flex, Text, Grid, Box, Image } from 'bumbag'
+import { Flex, Text, Grid, Box } from 'bumbag'
 import React from 'react'
 import Pagination from '../../molecules/Pagination/Pagination'
 import ProductItem from '../../molecules/ProductItem/ProductItem'

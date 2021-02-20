@@ -7,7 +7,7 @@ const theme: ThemeConfig = {
       base: css`
         html,
         body {
-          background-color: #E5E5E5;
+          background-color: #FAFAFA;
         }
         .DayPickerInput {
           width: 100%;
@@ -76,6 +76,10 @@ const theme: ThemeConfig = {
       color: '#1EA4CE',
       width: '2px',
     },
+    thickGrey: {
+      color: '#DFDEE2',
+      width: '2px',
+    },
     grey: {
       color: '#E0E0E0',
       width: '1px',
@@ -83,11 +87,13 @@ const theme: ThemeConfig = {
   },
   lineHeights: {
     sm: 1.28,
-    l: 1.42,
+    l: 1.38,
+    xl: 1.42,
   },
   altitudes: {
     100: 'box-shadow: 0px 1px 7px rgba(93, 56, 192, 0.4)',
-    200: 'box-shadow: 0px 4px 24px rgba(93, 62, 188, 0.04)'
+    200: 'box-shadow: 0px 4px 24px rgba(93, 62, 188, 0.04)',
+    300: 'box-shadow: 0px 6px 24px rgba(93, 62, 188, 0.04)',
   },
   spacing: {
     xs /* 4 */: space(1, 'minor'),
