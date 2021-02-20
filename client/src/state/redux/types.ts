@@ -1,0 +1,4 @@
+export const GET_COMPANIES = 'GET_COMPANIES';
+export const COMPANIES_ERROR = 'COMPANIES_ERROR'
+export const GET_ITEMS = 'GET_ITEMS';
+export const ITEMS_ERROR = 'ITEMS_ERROR'

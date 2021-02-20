@@ -1,10 +1,28 @@
 import { Flex, Text, Grid, Box } from 'bumbag'
-import React from 'react'
+import React, { Dispatch, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { AnyAction } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
+import { getCompanies } from '../../../state/redux/actions/companiesActions'
+import { getItems } from '../../../state/redux/actions/itemsActions'
 import Pagination from '../../molecules/Pagination/Pagination'
 import ProductItem from '../../molecules/ProductItem/ProductItem'
 import ProductListCategoryToggle from '../../molecules/ProductListCategoryToggle/ProductListCategoryToggle'
 
-const ProductList: React.FC = () => {
+interface IProductList {
+  getCompanies: () => void
+  companies: any
+  getItems: () => void
+  items: any
+}
+
+const ProductList: React.FC<IProductList> = ({ getCompanies, companies, getItems, items }) => {
+  useEffect(() => {
+    getCompanies()
+    getItems()
+  }, [])
+  console.log({ companies, items })
+
   return (
     <Flex flexDirection="column">
       <Text fontSize="20px" color="black" lineHeight="sm">
@@ -35,4 +53,20 @@ const ProductList: React.FC = () => {
   )
 }
 
-export default ProductList
+const mapStateToProps = (store): Partial<IProductList> => {
+  return {
+    companies: store.companies,
+    items: store.items,
+  }
+}
+
+export function mapDispatchToProps(
+  dispatch: Dispatch<ThunkDispatch<any, any, AnyAction>>
+): Partial<IProductList> {
+  return {
+    getCompanies: () => dispatch(getCompanies()),
+    getItems: () => dispatch(getItems()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList)
