@@ -1,28 +1,19 @@
 import { Flex, Text, Grid, Box } from 'bumbag'
-import React, { Dispatch, useEffect } from 'react'
+import React, { Dispatch, useState } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
-import { getCompanies } from '../../../state/redux/actions/companiesActions'
 import { getItems } from '../../../state/redux/actions/itemsActions'
 import Pagination from '../../molecules/Pagination/Pagination'
 import ProductItem from '../../molecules/ProductItem/ProductItem'
 import ProductListCategoryToggle from '../../molecules/ProductListCategoryToggle/ProductListCategoryToggle'
 
 interface IProductList {
-  getCompanies: () => void
-  companies: any
-  getItems: () => void
   items: any
+  onPageChange: (currentPage: number) => void
 }
 
-const ProductList: React.FC<IProductList> = ({ getCompanies, companies, getItems, items }) => {
-  useEffect(() => {
-    getCompanies()
-    getItems()
-  }, [])
-  console.log({ companies, items })
-
+const ProductList: React.FC<IProductList> = ({ items, onPageChange }) => {
   return (
     <Flex flexDirection="column">
       <Text fontSize="20px" color="black" lineHeight="sm">
@@ -39,14 +30,19 @@ const ProductList: React.FC<IProductList> = ({ getCompanies, companies, getItems
         borderRadius="xs"
         altitude="200"
       >
-        {[...Array(16)].map(each => (
+        {items.items.map(each => (
           <ProductItem />
         ))}
       </Grid>
       <Box marginTop="32px" paddingX="36px">
         <Pagination
-          pagination={{ rowCount: 50, pageCount: 10, pagination: { offset: 10, count: 10, currentPage: 1 } }}
-          handlePageNumberChange={() => null}
+          pagination={{
+            rowCount: items.pagination.count,
+            pageCount: items.pagination.pageCount,
+            pagination: { offset: 0, count: 16, currentPage: items.pagination.currentPage },
+          }}
+          handlePageNumberChange={onPageChange}
+          pageNeighbours={3}
         />
       </Box>
     </Flex>
@@ -55,7 +51,6 @@ const ProductList: React.FC<IProductList> = ({ getCompanies, companies, getItems
 
 const mapStateToProps = (store): Partial<IProductList> => {
   return {
-    companies: store.companies,
     items: store.items,
   }
 }
@@ -64,8 +59,7 @@ export function mapDispatchToProps(
   dispatch: Dispatch<ThunkDispatch<any, any, AnyAction>>
 ): Partial<IProductList> {
   return {
-    getCompanies: () => dispatch(getCompanies()),
-    getItems: () => dispatch(getItems()),
+    onPageChange: currentPage => dispatch(getItems(currentPage)),
   }
 }
 
