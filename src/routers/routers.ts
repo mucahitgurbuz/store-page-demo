@@ -17,7 +17,7 @@ export const routerDefinitions: { [key: string]: IRouteConfig } = {
     key: 'Store',
     url: urls.Store,
     component: Store,
-    protectedRoute: false,
+    protectedRoute: true,
   },
 }
 
