@@ -1,19 +1,14 @@
 import { Flex, Text, Grid, Box } from 'bumbag'
-import React, { Dispatch, useState } from 'react'
-import { connect } from 'react-redux'
-import { AnyAction } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { getItems } from '../../../state/redux/actions/itemsActions'
 import Pagination from '../../molecules/Pagination/Pagination'
 import ProductItem from '../../molecules/ProductItem/ProductItem'
 import ProductListCategoryToggle from '../../molecules/ProductListCategoryToggle/ProductListCategoryToggle'
 
-interface IProductList {
-  items: any
-  onPageChange: (currentPage: number) => void
-}
-
-const ProductList: React.FC<IProductList> = ({ items, onPageChange }) => {
+const ProductList: React.FC = () => {
+  const dispatch = useDispatch()
+  const items = useSelector(state => state.items)
   return (
     <Flex flexDirection="column">
       <Text fontSize="20px" color="black" lineHeight="sm">
@@ -41,7 +36,7 @@ const ProductList: React.FC<IProductList> = ({ items, onPageChange }) => {
             pageCount: items.pagination.pageCount,
             pagination: { offset: 0, count: 16, currentPage: items.pagination.currentPage },
           }}
-          handlePageNumberChange={onPageChange}
+          handlePageNumberChange={currentPage => dispatch(getItems(currentPage))}
           pageNeighbours={3}
         />
       </Box>
@@ -49,18 +44,4 @@ const ProductList: React.FC<IProductList> = ({ items, onPageChange }) => {
   )
 }
 
-const mapStateToProps = (store): Partial<IProductList> => {
-  return {
-    items: store.items,
-  }
-}
-
-export function mapDispatchToProps(
-  dispatch: Dispatch<ThunkDispatch<any, any, AnyAction>>
-): Partial<IProductList> {
-  return {
-    onPageChange: currentPage => dispatch(getItems(currentPage)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList)
+export default ProductList
