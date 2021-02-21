@@ -1,7 +1,9 @@
 import { Flex, Image, Text } from 'bumbag'
+import { useSelector } from 'react-redux'
 import React from 'react'
 
 const Header: React.FC = () => {
+  const totalPrice = useSelector(state => state.bucket.totalPrice)
   return (
     <Flex
       height="76px"
@@ -22,7 +24,7 @@ const Header: React.FC = () => {
         color="white"
       >
         <Image src="/assets/img/basket.png" alt="basket" />
-        <Text marginLeft="8px">₺ 39,97</Text>
+        <Text marginLeft="8px">₺ {totalPrice.toFixed(2)}</Text>
       </Flex>
     </Flex>
   )

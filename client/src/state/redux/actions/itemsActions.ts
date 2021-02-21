@@ -4,8 +4,6 @@ import { IFilterState, SortType } from '../reducers/filters'
 
 export const getItems = (activeFilter: IFilterState) => async dispatch => {
   try {
-    console.log({ activeFilter })
-
     const categoryQuery = `&itemType=${activeFilter.category}`
     const sortQuery = () => {
       switch (activeFilter.sort) {
@@ -22,27 +20,21 @@ export const getItems = (activeFilter: IFilterState) => async dispatch => {
       }
     }
 
-    const brandsQuery = activeFilter.brands.map(brand => `&manufacturer=${brand}`).join('')
+    console.log({ activeFilter })
+
+    const brandsQuery = activeFilter.brands.length ? `&brands=${activeFilter.brands.join()}` : ''
+
+    const tagsQuery = activeFilter.tags.length ? `&itemTags=${activeFilter.tags.join()}` : ''
 
     const res = await axios.get(
-      `http://localhost:3001/items?_page=${
+      `http://localhost:3001/items?page=${
         activeFilter.activePage
-      }&_limit=16${categoryQuery}${sortQuery()}${brandsQuery}`
+      }&limit=16${categoryQuery}${sortQuery()}${brandsQuery}${tagsQuery}`
     )
 
     dispatch({
       type: GET_ITEMS,
-      payload: [
-        res.data,
-        res.headers['x-total-count'],
-        res.headers['link']
-          .split(',')
-          .filter(item => item.includes('rel="last"'))[0]
-          .split('_page=')
-          .pop()
-          .split('&')[0],
-        activeFilter.activePage,
-      ],
+      payload: [res.data.data, res.data.brands, res.data.tags, res.data.count, activeFilter.activePage],
     })
   } catch (e) {
     dispatch({

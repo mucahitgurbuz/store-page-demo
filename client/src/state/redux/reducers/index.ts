@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import companiesReducer from './companies'
+import brandsReducer from './brands'
 import itemsReducer from './items'
 import bucketReducer from './bucket'
 import filtersReducer from './filters'
 
 export default combineReducers({
-  companies: companiesReducer,
+  brands: brandsReducer,
   items: itemsReducer,
   bucket: bucketReducer,
   filters: filtersReducer,

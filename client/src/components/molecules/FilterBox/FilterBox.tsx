@@ -7,7 +7,6 @@ interface IFilterBox {
   title: string
   categories: IFilterCategories[]
   onSelect: (label: string) => void
-  onSearch: (query: string) => void
   searchPlaceholder: string
 }
 
@@ -18,7 +17,7 @@ interface IFilterCategories {
   isSelected: boolean
 }
 
-const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, onSearch, searchPlaceholder }) => {
+const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, searchPlaceholder }) => {
   const [filteredCategories, setFilteredCategories] = useState<IFilterCategories[]>([])
   const [searchText, setSearchText] = useState('')
   useEffect(() => {

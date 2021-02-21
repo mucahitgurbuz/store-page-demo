@@ -9,6 +9,7 @@ import ProductListCategoryToggle from '../../molecules/ProductListCategoryToggle
 const ProductList: React.FC = () => {
   const dispatch = useDispatch()
   const items = useSelector(state => state.items)
+
   return (
     <Flex flexDirection="column">
       <Text fontSize="20px" color="black" lineHeight="sm">
@@ -25,7 +26,7 @@ const ProductList: React.FC = () => {
         borderRadius="xs"
         altitude="200"
       >
-        {items.items.map(item => (
+        {items.items?.map(item => (
           <ProductItem key={item.slug} price={item.price} name={item.name} slug={item.slug} />
         ))}
       </Grid>
@@ -34,7 +35,7 @@ const ProductList: React.FC = () => {
           pagination={{
             rowCount: items.pagination.count,
             pageCount: items.pagination.pageCount,
-            pagination: { offset: 0, count: 16, currentPage: items.pagination.currentPage },
+            pagination: { offset: 0, count: 16, currentPage: items.pagination.activePage },
           }}
           handlePageNumberChange={currentPage =>
             dispatch(setActiveFilters({ type: FilterType.ActivePage, value: currentPage }))

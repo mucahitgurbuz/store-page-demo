@@ -41,8 +41,13 @@ export default function(state = initialState, action) {
               ? state.brands.filter(brand => brand !== action.payload.value)
               : [...state.brands, action.payload.value]
             : state.brands,
-        tags: action.payload.type === FilterType.Tags ? action.payload.value : state.tags,
-        activePage: action.payload.type === FilterType.ActivePage ? action.payload.value : state.activePage,
+        tags:
+          action.payload.type === FilterType.Tags
+            ? state.tags.includes(action.payload.value)
+              ? state.tags.filter(brand => brand !== action.payload.value)
+              : [...state.tags, action.payload.value]
+            : state.tags,
+        activePage: action.payload.type === FilterType.ActivePage ? action.payload.value : 1,
       }
     }
     default:
