@@ -21,7 +21,9 @@ const CheckoutProduct: React.FC<ICheckoutProduct> = ({ product }) => {
     <Flex justifyContent="space-between" alignItems="center" paddingX="6px">
       <Flex flexDirection="column" gap="4px" lineHeight="sm">
         <Text color="black700">{product.name}</Text>
-        <Text color="primary">₺{product.price}</Text>
+        <Text color="primary" fontWeight="bold">
+          ₺{product.price}
+        </Text>
       </Flex>
       <Flex alignItems="center">
         <Button
@@ -39,6 +41,7 @@ const CheckoutProduct: React.FC<ICheckoutProduct> = ({ product }) => {
           backgroundColor="primary"
           color="white"
           marginX="12px"
+          fontWeight="bold"
         >
           {product.count}
         </Flex>

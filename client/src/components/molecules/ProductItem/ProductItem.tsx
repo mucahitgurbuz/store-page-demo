@@ -16,21 +16,23 @@ const ProductItem: React.FC<IProductItem> = ({ price, name, slug }) => {
     state => state.bucket.bucketItems.filter(item => item.itemSlug === slug).length > 0
   )
   return (
-    <Flex flexDirection="column">
-      <Flex width="100%" padding="16px" border="primary" borderRadius="lg">
-        <Image
-          objectFit="cover"
-          width="100%"
-          height="92px"
-          src="https://www.apple.com/v/product-red/o/images/meta/og__dbjwy50zuc02.png?202012220707"
-        />
+    <Flex flexDirection="column" justifyContent="space-between">
+      <Flex flexDirection="column">
+        <Flex width="100%" padding="16px" border="primary" borderRadius="lg">
+          <Image
+            objectFit="cover"
+            width="100%"
+            height="92px"
+            src="https://www.apple.com/v/product-red/o/images/meta/og__dbjwy50zuc02.png?202012220707"
+          />
+        </Flex>
+        <Text fontFamily="price" lineHeight="xl" marginTop="8px" color="primary" fontWeight="bold">
+          ₺ {price}
+        </Text>
+        <Text fontWeight="bold" lineHeight="xl" color="black700">
+          {name}
+        </Text>
       </Flex>
-      <Text fontFamily="price" lineHeight="xl" marginTop="8px" color="primary">
-        ₺ {price}
-      </Text>
-      <Text fontWeight="bold" lineHeight="xl" color="black700">
-        {name}
-      </Text>
       <Button
         styleProps={{
           width: '100%',
