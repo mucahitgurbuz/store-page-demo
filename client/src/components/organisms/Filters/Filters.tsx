@@ -1,24 +1,30 @@
 import { Flex } from 'bumbag'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCompanies } from '../../../state/redux/actions/companiesActions'
+import { FilterType, setActiveFilters } from '../../../state/redux/actions/filtersActions'
 import FilterBox from '../../molecules/FilterBox/FilterBox'
 import SortBox from '../../molecules/SortBox/SortBox'
 
 const Filters: React.FC = () => {
+  const dispatch = useDispatch()
+  const brands = useSelector(state => state.companies)
+  const activeBrandFilters = useSelector(state => state.filters.brands)
+
+  useEffect(() => {
+    dispatch(getCompanies())
+  }, [])
   return (
     <Flex flexDirection="column" gap="24px">
       <SortBox />
       <FilterBox
         title="Brands"
         searchPlaceholder="Search brand"
-        categories={[
-          { label: 'All', count: 18, isSelected: true },
-          { label: 'Konopelski Group', count: 9, isSelected: false },
-          { label: 'Rice Inc', count: 4, isSelected: false },
-          { label: 'Rice Inc', count: 4, isSelected: false },
-          { label: 'Rice Inc', count: 4, isSelected: false },
-        ]}
+        categories={brands.companies?.map(brand => {
+          return { label: brand.name, slug: brand.slug, isSelected: activeBrandFilters?.includes(brand.slug) }
+        })}
         onSearch={() => null}
-        onSelect={() => null}
+        onSelect={(slug: string) => dispatch(setActiveFilters({ type: FilterType.Brands, value: slug }))}
       />
       <FilterBox
         title="Tags"

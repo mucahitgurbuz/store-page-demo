@@ -11,7 +11,7 @@ interface ICheckBox {
 
 const CheckBox: React.FC<ICheckBox> = ({ isSelected, label, count, onClick }) => {
   return (
-    <Flex alignItems="center" onClick={() => !isSelected && onClick()} cursor="pointer" paddingX="4px">
+    <Flex alignItems="center" onClick={() => onClick()} cursor="pointer" paddingX="4px">
       <Flex
         justifyContent="center"
         alignItems="center"

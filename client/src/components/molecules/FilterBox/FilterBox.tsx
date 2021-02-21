@@ -1,5 +1,5 @@
 import { Flex, Input, Text } from 'bumbag'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CheckBox from '../../atoms/CheckBox/CheckBox'
 import { Scrollbars } from 'react-custom-scrollbars'
 
@@ -13,11 +13,20 @@ interface IFilterBox {
 
 interface IFilterCategories {
   label: string
-  count: number
+  count?: number
+  slug?: string
   isSelected: boolean
 }
 
 const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, onSearch, searchPlaceholder }) => {
+  const [filteredCategories, setFilteredCategories] = useState<IFilterCategories[]>([])
+  const [searchText, setSearchText] = useState('')
+  useEffect(() => {
+    setFilteredCategories(categories.filter(category => category.label.includes(searchText)))
+  }, [searchText, categories])
+  const handleSearch = e => {
+    setSearchText(e.target.value)
+  }
   return (
     <Flex flexDirection="column">
       <Text fontSize="13px" lineHeight="l" color="black400" fontWeight="600">
@@ -33,7 +42,11 @@ const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, onSearch
         padding="24px"
         maxHeight="244px"
       >
-        <Input placeholder={searchPlaceholder} />
+        <Input
+          placeholder={searchPlaceholder}
+          onChange={handleSearch}
+          value={searchText ? searchText : undefined}
+        />
         <Scrollbars
           style={{ height: '310px' }}
           renderTrackHorizontal={props => (
@@ -47,13 +60,13 @@ const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, onSearch
           )}
         >
           <Flex flexDirection="column" gap="18px" paddingY="4px">
-            {categories.map(category => (
+            {filteredCategories.map(category => (
               <CheckBox
                 key={category.label}
                 label={category.label}
                 isSelected={category.isSelected}
                 count={category.count}
-                onClick={() => null}
+                onClick={() => category.slug && onSelect(category.slug)}
               />
             ))}
           </Flex>

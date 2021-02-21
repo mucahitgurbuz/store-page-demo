@@ -35,7 +35,12 @@ export default function(state = initialState, action) {
       return {
         sort: action.payload.type === FilterType.Sort ? action.payload.value : state.sort,
         category: action.payload.type === FilterType.Category ? action.payload.value : state.category,
-        brands: action.payload.type === FilterType.Brands ? action.payload.value : state.brands,
+        brands:
+          action.payload.type === FilterType.Brands
+            ? state.brands.includes(action.payload.value)
+              ? state.brands.filter(brand => brand !== action.payload.value)
+              : [...state.brands, action.payload.value]
+            : state.brands,
         tags: action.payload.type === FilterType.Tags ? action.payload.value : state.tags,
         activePage: action.payload.type === FilterType.ActivePage ? action.payload.value : state.activePage,
       }

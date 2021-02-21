@@ -22,8 +22,12 @@ export const getItems = (activeFilter: IFilterState) => async dispatch => {
       }
     }
 
+    const brandsQuery = activeFilter.brands.map(brand => `&manufacturer=${brand}`).join('')
+
     const res = await axios.get(
-      `http://localhost:3001/items?_page=${activeFilter.activePage}&_limit=16${categoryQuery}${sortQuery()}`
+      `http://localhost:3001/items?_page=${
+        activeFilter.activePage
+      }&_limit=16${categoryQuery}${sortQuery()}${brandsQuery}`
     )
 
     dispatch({

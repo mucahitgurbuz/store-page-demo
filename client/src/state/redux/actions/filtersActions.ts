@@ -3,7 +3,7 @@ import { SET_ACTIVE_FILTERS } from '../types'
 
 export interface IActiveFilter {
   type: FilterType
-  value: SortType | ItemCategory | string[] | number
+  value: SortType | ItemCategory | string | number
 }
 
 export enum FilterType {
