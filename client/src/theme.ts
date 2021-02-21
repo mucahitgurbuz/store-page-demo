@@ -7,7 +7,7 @@ const theme: ThemeConfig = {
       base: css`
         html,
         body {
-          background-color: #FAFAFA;
+          background-color: #fafafa;
         }
         .DayPickerInput {
           width: 100%;
@@ -17,7 +17,7 @@ const theme: ThemeConfig = {
         }
         button::focus {
           outline: none !important;
-        }    
+        }
       `,
     },
   },
@@ -59,6 +59,9 @@ const theme: ThemeConfig = {
     grey100: '#F4F4F4',
     grey200: '#F3F0FE',
     grey300: '#E5E5E5',
+
+    red: '#8d021f',
+    red100: '#5e1914',
   },
   borderRadii: {
     default: '6px',
@@ -115,23 +118,23 @@ const theme: ThemeConfig = {
   Input: {
     styles: {
       base: {
-        border: "2px solid #E0E0E0",
-        borderRadius: "2px",
+        border: '2px solid #E0E0E0',
+        borderRadius: '2px',
         paddingLeft: '16px',
         paddingRight: '16px',
         fontFamily: 'Inter, sans-serif',
         height: '48px',
         color: '#A8A8A8',
         lineHeight: 1.72,
-        ":focus": {border: "2px solid #E0E0E0", boxShadow: 'none !important'}
+        ':focus': { border: '2px solid #E0E0E0', boxShadow: 'none !important' },
       },
       placeholder: {
         fontFamily: 'Inter, sans-serif',
         color: '#A8A8A8',
-        lineHeight: 1.72
-      }
-    }
-  }
+        lineHeight: 1.72,
+      },
+    },
+  },
 }
 
 export default theme

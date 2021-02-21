@@ -25,8 +25,8 @@ const ProductList: React.FC = () => {
         borderRadius="xs"
         altitude="200"
       >
-        {items.items.map(each => (
-          <ProductItem />
+        {items.items.map(item => (
+          <ProductItem key={item.slug} price={item.price} name={item.name} slug={item.slug} />
         ))}
       </Grid>
       <Box marginTop="32px" paddingX="36px">

@@ -7,9 +7,18 @@ interface IButton {
   styleProps?: FlexProps
   icon?: JSX.Element
   iconPosition?: 'left' | 'right'
+  onClick?: () => void
 }
 
-const Button: React.FC<IButton> = ({ children, disabled, isGhost, styleProps, icon, iconPosition }) => {
+const Button: React.FC<IButton> = ({
+  children,
+  disabled,
+  isGhost,
+  styleProps,
+  icon,
+  iconPosition,
+  onClick,
+}) => {
   return (
     <Flex
       alignItems="center"
@@ -25,6 +34,8 @@ const Button: React.FC<IButton> = ({ children, disabled, isGhost, styleProps, ic
         backgroundColor: isGhost ? 'transparent' : 'primary100',
       }}
       disabled={disabled}
+      onClick={onClick && onClick}
+      userSelect="none"
       {...styleProps}
     >
       {icon && iconPosition === 'left' && icon}
