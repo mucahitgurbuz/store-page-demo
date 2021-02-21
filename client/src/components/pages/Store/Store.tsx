@@ -1,6 +1,6 @@
 import { Box, Flex } from 'bumbag'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getCompanies } from '../../../state/redux/actions/companiesActions'
 import { getItems } from '../../../state/redux/actions/itemsActions'
 import Checkout from '../../organisms/Checkout/Checkout'
@@ -9,10 +9,11 @@ import ProductList from '../../organisms/ProductList/ProductList'
 
 const Store: React.FC = () => {
   const dispatch = useDispatch()
+  const activeFilters = useSelector(state => state.filters)
   useEffect(() => {
     dispatch(getCompanies())
-    dispatch(getItems(1))
-  }, [])
+    dispatch(getItems(activeFilters))
+  }, [activeFilters])
   return (
     <Flex paddingY="40px" paddingX="104px" gap="16px">
       <Box flex="1">

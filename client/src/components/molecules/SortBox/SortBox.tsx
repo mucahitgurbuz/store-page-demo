@@ -1,5 +1,8 @@
 import { Flex, Text } from 'bumbag'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { FilterType, setActiveFilters } from '../../../state/redux/actions/filtersActions'
+import { SortType } from '../../../state/redux/reducers/filters'
 import RadioButton from '../../atoms/RadioButton/RadioButton'
 
 const SortBox: React.FC = () => {
@@ -9,6 +12,8 @@ const SortBox: React.FC = () => {
     { label: 'New to old', isSelected: false },
     { label: 'Old to new', isSelected: false },
   ]
+  const dispatch = useDispatch()
+  const activeSort = useSelector(state => state.filters.sort)
   return (
     <Flex flexDirection="column">
       <Text fontSize="13px" lineHeight="l" color="black400" fontWeight="600">
@@ -23,12 +28,12 @@ const SortBox: React.FC = () => {
         backgroundColor="white"
         padding="24px"
       >
-        {sortFilters.map(filter => (
+        {Object.keys(SortType).map(sort => (
           <RadioButton
-            key={filter.label}
-            isSelected={filter.isSelected}
-            label={filter.label}
-            onClick={() => null}
+            key={SortType[sort]}
+            isSelected={SortType[sort] === activeSort}
+            label={SortType[sort]}
+            onClick={() => dispatch(setActiveFilters({ type: FilterType.Sort, value: SortType[sort] }))}
           />
         ))}
       </Flex>

@@ -1,7 +1,7 @@
 import { Flex, Text, Grid, Box } from 'bumbag'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getItems } from '../../../state/redux/actions/itemsActions'
+import { FilterType, setActiveFilters } from '../../../state/redux/actions/filtersActions'
 import Pagination from '../../molecules/Pagination/Pagination'
 import ProductItem from '../../molecules/ProductItem/ProductItem'
 import ProductListCategoryToggle from '../../molecules/ProductListCategoryToggle/ProductListCategoryToggle'
@@ -36,7 +36,9 @@ const ProductList: React.FC = () => {
             pageCount: items.pagination.pageCount,
             pagination: { offset: 0, count: 16, currentPage: items.pagination.currentPage },
           }}
-          handlePageNumberChange={currentPage => dispatch(getItems(currentPage))}
+          handlePageNumberChange={currentPage =>
+            dispatch(setActiveFilters({ type: FilterType.ActivePage, value: currentPage }))
+          }
           pageNeighbours={3}
         />
       </Box>
