@@ -24,7 +24,9 @@ const Header: React.FC = () => {
         color="white"
       >
         <Image src="/assets/img/basket.png" alt="basket" />
-        <Text marginLeft="8px">₺ {totalPrice.toFixed(2)}</Text>
+        <Text marginLeft="8px" fontWeight="bold">
+          ₺ {totalPrice.toFixed(2)}
+        </Text>
       </Flex>
     </Flex>
   )

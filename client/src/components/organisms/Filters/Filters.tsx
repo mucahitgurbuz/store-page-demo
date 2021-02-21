@@ -13,6 +13,8 @@ const Filters: React.FC = () => {
   const filteredTags = useSelector(state => state.items.tags)
   const activeBrandFilters = useSelector(state => state.filters.brands)
   const activeTagFilters = useSelector(state => state.filters.tags)
+  const isItemsBusy = useSelector(state => state.items.loading)
+  const isBrandsBusy = useSelector(state => state.brands.loading)
 
   useEffect(() => {
     dispatch(getBrands())
@@ -32,6 +34,7 @@ const Filters: React.FC = () => {
           }
         })}
         onSelect={(slug: string) => dispatch(setActiveFilters({ type: FilterType.Brands, value: slug }))}
+        isBusy={isItemsBusy || isBrandsBusy}
       />
       <FilterBox
         title="Tags"
@@ -45,6 +48,7 @@ const Filters: React.FC = () => {
           }
         })}
         onSelect={(slug: string) => dispatch(setActiveFilters({ type: FilterType.Tags, value: slug }))}
+        isBusy={isItemsBusy}
       />
     </Flex>
   )

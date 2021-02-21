@@ -1,4 +1,4 @@
-import { GET_ITEMS } from '../types'
+import { GET_ITEMS, ITEMS_LOADING } from '../types'
 
 const initialState = {
   items: [],
@@ -13,8 +13,6 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-  console.log(action)
-
   switch (action.type) {
     case GET_ITEMS:
       return {
@@ -27,6 +25,11 @@ export default function(state = initialState, action) {
           activePage: action.payload[4],
         },
         loading: false,
+      }
+    case ITEMS_LOADING:
+      return {
+        ...state,
+        loading: true,
       }
     default:
       return state

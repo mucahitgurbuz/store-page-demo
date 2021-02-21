@@ -1,5 +1,6 @@
 import { Flex, Text, Grid, Box } from 'bumbag'
 import React from 'react'
+import Skeleton from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { FilterType, setActiveFilters } from '../../../state/redux/actions/filtersActions'
 import Pagination from '../../molecules/Pagination/Pagination'
@@ -26,22 +27,32 @@ const ProductList: React.FC = () => {
         borderRadius="xs"
         altitude="200"
       >
-        {items.items?.map(item => (
-          <ProductItem key={item.slug} price={item.price} name={item.name} slug={item.slug} />
-        ))}
+        {items.loading
+          ? [...Array(16)].map(each => <Skeleton height="200px" />)
+          : items.items?.map(item => (
+              <ProductItem key={item.slug} price={item.price} name={item.name} slug={item.slug} />
+            ))}
       </Grid>
       <Box marginTop="32px" paddingX="36px">
-        <Pagination
-          pagination={{
-            rowCount: items.pagination.count,
-            pageCount: items.pagination.pageCount,
-            pagination: { offset: 0, count: 16, currentPage: items.pagination.activePage },
-          }}
-          handlePageNumberChange={currentPage =>
-            dispatch(setActiveFilters({ type: FilterType.ActivePage, value: currentPage }))
-          }
-          pageNeighbours={3}
-        />
+        {items.loading ? (
+          <Flex justifyContent="space-between">
+            <Skeleton height="40px" width="100px" />
+            <Skeleton height="40px" width="200px" />
+            <Skeleton height="40px" width="100px" />
+          </Flex>
+        ) : (
+          <Pagination
+            pagination={{
+              rowCount: items.pagination.count,
+              pageCount: items.pagination.pageCount,
+              pagination: { offset: 0, count: 16, currentPage: items.pagination.activePage },
+            }}
+            handlePageNumberChange={currentPage =>
+              dispatch(setActiveFilters({ type: FilterType.ActivePage, value: currentPage }))
+            }
+            pageNeighbours={3}
+          />
+        )}
       </Box>
     </Flex>
   )

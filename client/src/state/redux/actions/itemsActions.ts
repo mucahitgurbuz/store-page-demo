@@ -1,8 +1,9 @@
-import { GET_ITEMS, ITEMS_ERROR } from '../types'
+import { GET_ITEMS, ITEMS_LOADING, ITEMS_ERROR } from '../types'
 import axios from 'axios'
 import { IFilterState, SortType } from '../reducers/filters'
 
 export const getItems = (activeFilter: IFilterState) => async dispatch => {
+  dispatch({ type: ITEMS_LOADING })
   try {
     const categoryQuery = `&itemType=${activeFilter.category}`
     const sortQuery = () => {

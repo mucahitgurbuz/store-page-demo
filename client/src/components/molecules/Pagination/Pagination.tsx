@@ -100,7 +100,9 @@ export const Pagination: React.FC<IPaginationComponent> = ({
       <Button
         styleProps={{
           ...commonButtonProps,
-          onClick: () => handlePageNumberChange(pagination.pagination.currentPage - 1),
+          onClick: () =>
+            pagination.pagination.currentPage !== 1 &&
+            handlePageNumberChange(pagination.pagination.currentPage - 1),
         }}
         icon={<FaArrowLeft />}
         iconPosition="left"
@@ -158,7 +160,9 @@ export const Pagination: React.FC<IPaginationComponent> = ({
       <Button
         styleProps={{
           ...commonButtonProps,
-          onClick: () => handlePageNumberChange(pagination.pagination.currentPage + 1),
+          onClick: () =>
+            pagination.pagination.currentPage !== pagination.pageCount &&
+            handlePageNumberChange(pagination.pagination.currentPage + 1),
         }}
         icon={<FaArrowRight />}
         iconPosition="right"

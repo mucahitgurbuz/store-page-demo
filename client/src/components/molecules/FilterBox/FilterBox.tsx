@@ -2,12 +2,14 @@ import { Flex, Input, Text } from 'bumbag'
 import React, { useEffect, useState } from 'react'
 import CheckBox from '../../atoms/CheckBox/CheckBox'
 import { Scrollbars } from 'react-custom-scrollbars'
+import Skeleton from 'react-loading-skeleton'
 
 interface IFilterBox {
   title: string
   categories: IFilterCategories[]
   onSelect: (label: string) => void
   searchPlaceholder: string
+  isBusy?: boolean
 }
 
 interface IFilterCategories {
@@ -17,7 +19,7 @@ interface IFilterCategories {
   isSelected: boolean
 }
 
-const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, searchPlaceholder }) => {
+const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, searchPlaceholder, isBusy }) => {
   const [filteredCategories, setFilteredCategories] = useState<IFilterCategories[]>([])
   const [searchText, setSearchText] = useState('')
   useEffect(() => {
@@ -59,15 +61,25 @@ const FilterBox: React.FC<IFilterBox> = ({ title, categories, onSelect, searchPl
           )}
         >
           <Flex flexDirection="column" gap="18px" paddingY="4px">
-            {filteredCategories.map(category => (
-              <CheckBox
-                key={category.label}
-                label={category.label}
-                isSelected={category.isSelected}
-                count={category.count}
-                onClick={() => category.slug && onSelect(category.slug)}
-              />
-            ))}
+            {isBusy ? (
+              <>
+                <Skeleton height="22px" />
+                <Skeleton height="22px" />
+                <Skeleton height="22px" />
+              </>
+            ) : (
+              filteredCategories
+                .sort((a, b) => b.count - a.count)
+                .map(category => (
+                  <CheckBox
+                    key={category.label}
+                    label={category.label}
+                    isSelected={category.isSelected}
+                    count={category.count}
+                    onClick={() => category.slug && onSelect(category.slug)}
+                  />
+                ))
+            )}
           </Flex>
         </Scrollbars>
       </Flex>

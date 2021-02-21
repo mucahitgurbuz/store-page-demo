@@ -1,4 +1,4 @@
-import { GET_BRANDS } from '../types'
+import { BRANDS_LOADING, GET_BRANDS } from '../types'
 
 const initialState = {
   brands: [],
@@ -12,6 +12,11 @@ export default function(state = initialState, action) {
         ...state,
         brands: action.payload,
         loading: false,
+      }
+    case BRANDS_LOADING:
+      return {
+        ...state,
+        loading: true,
       }
     default:
       return state
