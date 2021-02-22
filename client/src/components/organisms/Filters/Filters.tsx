@@ -29,7 +29,7 @@ const Filters: React.FC = () => {
           return {
             label: brand.name,
             slug: brand.slug,
-            count: filteredBrands.filter(filteredBrand => filteredBrand.slug === brand.slug)[0]?.count || '0',
+            count: filteredBrands.filter(filteredBrand => filteredBrand.slug === brand.slug)[0]?.count || 0,
             isSelected: activeBrandFilters?.includes(brand.slug),
           }
         })}

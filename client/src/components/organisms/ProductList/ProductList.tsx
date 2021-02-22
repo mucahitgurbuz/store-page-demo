@@ -28,7 +28,7 @@ const ProductList: React.FC = () => {
         altitude="200"
       >
         {items.loading
-          ? [...Array(16)].map(each => <Skeleton height="200px" />)
+          ? [...Array(16)].map((each, i) => <Skeleton key={i.toString()} height="200px" />)
           : items.items?.map(item => (
               <ProductItem key={item.slug} price={item.price} name={item.name} slug={item.slug} />
             ))}

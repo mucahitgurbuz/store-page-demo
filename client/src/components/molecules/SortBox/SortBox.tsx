@@ -6,12 +6,6 @@ import { SortType } from '../../../state/redux/reducers/filters'
 import RadioButton from '../../atoms/RadioButton/RadioButton'
 
 const SortBox: React.FC = () => {
-  const sortFilters = [
-    { label: 'Price low to high', isSelected: true },
-    { label: 'Price high to low', isSelected: false },
-    { label: 'New to old', isSelected: false },
-    { label: 'Old to new', isSelected: false },
-  ]
   const dispatch = useDispatch()
   const activeSort = useSelector(state => state.filters.sort)
   return (
