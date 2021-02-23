@@ -9,7 +9,11 @@ import Pagination from './Pagination'
 
 # Pagination
 
-A styled radio button component.
+A generic pagination component which generates an array of buttons to handle pagination for a huge dataset.
+
+- It has a `Prev` and `Next` buttons at the beginning and at the end by default where you can navigate one step forward or backward.
+- With the given parameters and using `pageNeighbours` value, navigate buttons generated. `pageNeighbours` is the count of neigbours of the current page button.
+- When on a page number or navigate buttons click `handlePageNumberChange` callback is called with a selected page number.
 
 ## Props
 

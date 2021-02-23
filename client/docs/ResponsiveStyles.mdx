@@ -13,7 +13,15 @@ We use the @media(min-width) media queries to ensure values are mobile-first.
 This shortcut is an alternative to writing media queries out by hand. Given the following:
 
 ```js
-<Box width={[1, 1 / 2, 1 / 4]} />
+<Box
+  backgroundColor={{
+    default: 'primary',
+    mobile: 'red',
+  }}
+  color="white"
+>
+  This is a box
+</Box>
 ```
 
 It'll generate a CSS that looks like this
@@ -21,18 +29,12 @@ It'll generate a CSS that looks like this
 ```js
 
 .Box {
-  width: 100%;
+  backgroundColor: 'red';
 }
 
 @media screen and (min-width: 40em) {
   .Box {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 52em) {
-  .Box {
-    width: 25%;
+    backgroundColor: 'primary;
   }
 }
 ```
@@ -41,16 +43,25 @@ The equivalent of this style if you passed it as an object.
 
 ```
 // First, create an alias for breakpoints
-const breakpoints = ["30em", "48em", "62em", "80em"];
+const breakpoints: {
+    mobile: 520,
+    tablet: 960,
+  };
 // aliases
-breakpoints.sm = breakpoints[0];
-breakpoints.md = breakpoints[1];
-breakpoints.lg = breakpoints[2];
-breakpoints.xl = breakpoints[3];
+breakpoints.sm = breakpoints.mobile;
+breakpoints.md = breakpoints.tablet;
 ```
 
 then
 
 ```
-<Box width={{ base: 1, sm: 1 / 2, md: 1 / 4 }} />
+<Box
+  width={{
+    default: '50px',
+    'sm': '300px',
+    'md': '200px'
+  }}
+>
+  This is a box
+</Box>
 ```

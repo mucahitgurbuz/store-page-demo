@@ -21,7 +21,10 @@ const theme: ThemeConfig = {
       `,
     },
   },
-
+  breakpoints: {
+    mobile: 520,
+    tablet: 960,
+  },
   fonts: {
     default: 'Open Sans, sans-serif',
     price: 'Helvetica, sans-serif',

@@ -9,8 +9,8 @@ import Filters from './Filters'
 
 # Filters
 
-A styled radio button component.
+This is a column in the store page where **sort**, **brand** and **tag** filter boxes are placed.
 
-## Props
-
-<Props of={Filters} />
+- All required states are obtained from redux-store and passed to brand and tag filterboxes.
+- SortBox handles it state management system in itself as it is a unique component.
+- On component mount it dispatch an fetch action to brands endpoint and brands name are used using this resource.
