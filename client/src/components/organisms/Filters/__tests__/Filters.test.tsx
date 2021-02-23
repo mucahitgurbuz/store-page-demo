@@ -37,13 +37,14 @@ describe('Filters', () => {
     })
     const component = create(<Filters />)
     expect(component.root.findAllByType(FilterBox)[0].props.categories).toStrictEqual([
-      { label: 'test brand', slug: 'test-brand', count: 5, isSelected: true },
+      { count: 5, label: 'test brand', slug: 'test-brand', isSelected: true },
+      { count: 5, isSelected: false, label: 'All', slug: 'all' },
     ])
 
     const localState2 = {
       ...mockState,
       brands: { ...mockState.brands, brands: [{ name: 'test brand 2', slug: 'test-brand-2' }] },
-      items: { ...mockState.items, brands: [{ slug: 'test-brand-2' }] },
+      items: { ...mockState.items, brands: [{ slug: 'test-brand-2', count: 1 }] },
       filters: { ...mockState.filters, brands: [] },
     }
     useSelector.mockImplementation(callback => {
@@ -51,7 +52,8 @@ describe('Filters', () => {
     })
     const component2 = create(<Filters />)
     expect(component2.root.findAllByType(FilterBox)[0].props.categories).toStrictEqual([
-      { label: 'test brand 2', slug: 'test-brand-2', count: 0, isSelected: false },
+      { label: 'test brand 2', slug: 'test-brand-2', count: 1, isSelected: false },
+      { count: 1, isSelected: true, label: 'All', slug: 'all' },
     ])
 
     expect(component2.root.findAllByType(FilterBox)[0].props.isBusy).toBe(false)
@@ -95,6 +97,7 @@ describe('Filters', () => {
     const component = create(<Filters />)
     expect(component.root.findAllByType(FilterBox)[1].props.categories).toStrictEqual([
       { label: 'test-tag', slug: 'test-tag', count: 5, isSelected: true },
+      { count: 5, isSelected: false, label: 'All', slug: 'all' },
     ])
 
     const localState2 = {
@@ -108,6 +111,7 @@ describe('Filters', () => {
     const component2 = create(<Filters />)
     expect(component2.root.findAllByType(FilterBox)[1].props.categories).toStrictEqual([
       { label: 'test-tag-2', slug: 'test-tag-2', count: 2, isSelected: false },
+      { label: 'All', slug: 'all', count: 2, isSelected: true },
     ])
 
     expect(component2.root.findAllByType(FilterBox)[1].props.isBusy).toBe(false)
