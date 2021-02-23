@@ -32,6 +32,12 @@ const initialState: IFilterState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ACTIVE_FILTERS: {
+      if (action.payload.type === FilterType.Brands && action.payload.value === 'all') {
+        return { ...state, brands: [] }
+      }
+      if (action.payload.type === FilterType.Tags && action.payload.value === 'all') {
+        return { ...state, tags: [] }
+      }
       return {
         sort: action.payload.type === FilterType.Sort ? action.payload.value : state.sort,
         category: action.payload.type === FilterType.Category ? action.payload.value : state.category,

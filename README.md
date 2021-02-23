@@ -58,6 +58,7 @@ yarn test
 4. Unit testing with a 100% of business logic.
 5. Atomic design principles applied (https://bradfrost.com/blog/post/atomic-web-design/) for reusable and scalable product.
 6. Used design system for the apply CSS-in-Props where handling state management with css is much more easy.
+7. All pages and components should be responsive for mobile and tablet views.
 
 ### In18 Integration
 

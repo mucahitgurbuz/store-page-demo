@@ -18,7 +18,7 @@ const ProductList: React.FC = () => {
       </Text>
       <ProductListCategoryToggle />
       <Grid
-        gridTemplateColumns="repeat(4, 1fr)"
+        gridTemplateColumns={{ default: 'repeat(4, 1fr)', tablet: 'repeat(2,1fr)', mobile: 'repeat(1,1fr)' }}
         gridColumnGap="24px"
         gridRowGap="20px"
         padding="20px"
@@ -33,7 +33,7 @@ const ProductList: React.FC = () => {
               <ProductItem key={item.slug} price={item.price} name={item.name} slug={item.slug} />
             ))}
       </Grid>
-      <Box marginTop="32px" paddingX="36px">
+      <Box marginTop="32px" paddingX={{ default: '36px', tablet: '6px', mobile: '6px' }}>
         {items.loading ? (
           <Flex justifyContent="space-between">
             <Skeleton height="40px" width="100px" />
@@ -50,7 +50,7 @@ const ProductList: React.FC = () => {
             handlePageNumberChange={currentPage =>
               dispatch(setActiveFilters({ type: FilterType.ActivePage, value: currentPage }))
             }
-            pageNeighbours={3}
+            pageNeighbours={2}
           />
         )}
       </Box>

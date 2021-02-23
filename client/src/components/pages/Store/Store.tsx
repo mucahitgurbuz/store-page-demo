@@ -13,14 +13,19 @@ const Store: React.FC = () => {
     dispatch(getItems(activeFilters))
   }, [activeFilters])
   return (
-    <Flex paddingY="40px" paddingX="104px" gap="16px">
-      <Box flex="1">
+    <Flex
+      paddingY="40px"
+      paddingX={{ default: '104px', tablet: '64px', mobile: '32px' }}
+      gap="16px"
+      flexWrap="wrap"
+    >
+      <Box flex={{ default: '1', tablet: '1', mobile: '1' }} minWidth="232px">
         <Filters />
       </Box>
-      <Box flex="2">
+      <Box flex={{ default: '2', tablet: '1', mobile: '1' }} width="100%">
         <ProductList />
       </Box>
-      <Box flex="1">
+      <Box flex={{ default: '1', tablet: '1', mobile: '1' }} minWidth="232px">
         <Checkout />
       </Box>
     </Flex>

@@ -8,9 +8,10 @@ const Header: React.FC = () => {
     <Flex
       height="76px"
       backgroundColor="primary"
-      justifyContent="center"
+      justifyContent={{ default: 'center', mobile: 'flex-start' }}
       alignItems="center"
       position="relative"
+      paddingX="32px"
     >
       <Image src="/assets/img/logo.png" alt="logo" />
       <Flex
@@ -19,7 +20,7 @@ const Header: React.FC = () => {
         backgroundColor="primary100"
         padding="24px"
         position="absolute"
-        right="104px"
+        right={{ default: '104px', mobile: '0px' }}
         height="100%"
         color="white"
       >

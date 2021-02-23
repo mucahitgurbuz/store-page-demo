@@ -1,6 +1,4 @@
 import { Flex, Provider as BumbagProvider, ToastManager } from 'bumbag'
-import * as dayjs from 'dayjs'
-import 'dayjs/locale/tr'
 import i18n from 'i18next'
 import React from 'react'
 import { initReactI18next } from 'react-i18next'
@@ -16,8 +14,6 @@ import { IRouteConfig, routes } from './routers/routers'
 import { Provider } from 'react-redux'
 import store from './state/redux/store'
 import theme from './theme'
-
-dayjs.locale('tr')
 
 i18n.use(initReactI18next).init({
   resources: {

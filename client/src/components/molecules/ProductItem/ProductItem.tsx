@@ -21,8 +21,8 @@ const ProductItem: React.FC<IProductItem> = ({ price, name, slug }) => {
         <Flex width="100%" padding="16px" border="primary" borderRadius="lg">
           <Image
             objectFit="cover"
-            width="100%"
-            height="92px"
+            width="inherit"
+            height="auto" //92
             src="https://www.apple.com/v/product-red/o/images/meta/og__dbjwy50zuc02.png?202012220707"
           />
         </Flex>

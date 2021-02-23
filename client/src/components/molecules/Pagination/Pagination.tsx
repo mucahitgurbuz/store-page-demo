@@ -96,7 +96,7 @@ export const Pagination: React.FC<IPaginationComponent> = ({
   const pages = fetchPageNumbers(pagination.pageCount, pageNeighbours, pagination.pagination.currentPage)
 
   return (
-    <Flex justifyContent="space-between" width="100%">
+    <Flex justifyContent="space-between" width="100%" flexWrap="wrap">
       <Button
         styleProps={{
           ...commonButtonProps,
