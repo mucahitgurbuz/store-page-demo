@@ -2,6 +2,9 @@
 
 This is an example store page with dynamic filtering, pagination, sorting using TypeScript, ReactJS, Redux.
 
+You can find the **demo** page [here](https://store-page-demo.herokuapp.com/).
+You can check the **documentation** [here](https://store-page-demo-docs.herokuapp.com/).
+
 ## How to install
 
 - You need to have `yarn` & `node` installed in your machine.
