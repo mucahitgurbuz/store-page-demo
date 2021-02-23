@@ -1,0 +1,31 @@
+---
+name: CheckBox
+route: /component/checkbox
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import CheckBox from './CheckBox'
+import { Provider, Flex, Text } from 'bumbag'
+import theme from '../../../theme'
+import { FaCheck } from 'react-icons/fa'
+
+# CheckBox
+
+A styled checkbox component.
+
+## Props
+
+<Props of={CheckBox} />
+
+## Basic usage
+
+<Playground>
+  <Provider theme={theme}>
+    <Flex flexDirection="column" gap="12px">
+      <CheckBox isSelected label="Checked" />
+      <CheckBox isSelected={false} label="Unchecked" />
+      <CheckBox isSelected={false} label="Unchecked" count={5} />
+    </Flex>
+  </Provider>
+</Playground>

@@ -1,0 +1,30 @@
+---
+name: Pagination
+route: /component/pagination
+menu: Components
+---
+
+import { Props } from 'docz'
+import Pagination from './Pagination'
+
+# Pagination
+
+A styled radio button component.
+
+## Props
+
+<Props of={Pagination} />
+
+```js
+export interface IPagination {
+  pageCount: number
+  rowCount: number
+  pagination: DqbPaginationProps
+}
+
+interface DqbPaginationProps {
+  offset: number
+  count: number
+  currentPage: number
+}
+```
